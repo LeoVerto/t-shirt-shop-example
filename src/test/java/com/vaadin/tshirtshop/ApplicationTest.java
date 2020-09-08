@@ -5,6 +5,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.spring.SpringServlet;
 import com.vaadin.tshirtshop.domain.TShirtOrder;
@@ -58,6 +59,9 @@ public class ApplicationTest {
         final SpringServlet servlet = new MockSpringServlet(routes, ctx, uiFactory);
         MockVaadin.setup(uiFactory, servlet);
         repo.deleteAll();
+
+        LoginFormKt._login(_get(LoginForm.class), "user", "password");
+        UI.getCurrent().navigate("");
     }
 
     @AfterEach
